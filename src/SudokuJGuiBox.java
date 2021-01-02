@@ -7,5 +7,6 @@ public class SudokuJGuiBox extends JTextField{
         setHorizontalAlignment(JTextField.CENTER);
         setFont(new Font("SansSerif", Font.BOLD, 24));
         setEditable(false);
+
     }
 }

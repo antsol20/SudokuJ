@@ -16,7 +16,6 @@ public class SudokuJ {
         f.setLayout(new GridLayout(9, 9));
 
 
-
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(9, 9));
         int pointer = 0;

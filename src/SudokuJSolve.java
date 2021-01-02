@@ -11,6 +11,7 @@ public class SudokuJSolve {
         fillBoardFromTxT(boardTxt);
         printBoard();
         solveBoard();
+
     }
 
     private void fillBoardFromTxT(String boardTxt) {
