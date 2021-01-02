@@ -25,9 +25,9 @@ public class SudokuJ {
 
     private void printBoard() {
         for (int i = 0; i < 9; i++) {
-            String row = "";
+            StringBuilder row = new StringBuilder();
             for (int j = 0; j < 9; j++) {
-                row = row + " " + board[i][j];
+                row.append(" ").append(board[i][j]);
             }
             System.out.println(row);
         }
