@@ -6,12 +6,12 @@ public class SudokuJ {
     private final static JTextField[] textBoxes = new JTextField[81];
 
     private static void createGui() {
-        String loc = "C:\\Users\\Antony\\Documents\\Source_code\\SudokuJ\\src\\ico.png";
-        ImageIcon img = new ImageIcon(loc);
+        ImageIcon img = new ImageIcon("res\\ico.png");
         JFrame f = new JFrame("SudokuJ");
         f.setIconImage(img.getImage());
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setSize(600, 600);
+        f.setResizable(false);
         f.setLocation(300, 200);
         f.setLayout(new GridLayout(9, 9));
 
@@ -38,9 +38,11 @@ public class SudokuJ {
 
         m1.addActionListener(e -> {
 
+            int[][] input = guiToArray();
+            SudokuJSolve s = new SudokuJSolve(input);
+            arrayToGui(s.solve());
 
         });
-
     }
 
     public static void main(String[] args) {
@@ -57,24 +59,47 @@ public class SudokuJ {
                 """;
 
 
-        SudokuJSolve s = new SudokuJSolve(boardTxt);
-        // s.solve();
         createGui();
-        populateGrid(boardTxt);
-
+        arrayToGui(stringToArray(boardTxt));
     }
 
-    private static void populateGrid(String grid) {
+    private static void arrayToGui(int[][] input) {
 
         int pointer = 0;
-        String[] rows = grid.split("\n");
         for (int i = 0; i < 9; i++) {
-            String[] vals = rows[i].split(",");
             for (int j = 0; j < 9; j++) {
-                textBoxes[pointer].setText(vals[j]);
+                textBoxes[pointer].setText(String.valueOf(input[i][j]));
                 pointer++;
             }
         }
+    }
+
+
+    private static int[][] stringToArray(String txt) {
+        int[][] out = new int[9][9];
+        String[] rows = txt.split("\n");
+
+        for (int i = 0; i < 9; i++) {
+            String[] vals = rows[i].split(",");
+            for (int j = 0; j < 9; j++) {
+                out[i][j] = Integer.parseInt(vals[j]);
+            }
+        }
+        return out;
+    }
+
+
+    private static int[][] guiToArray() {
+        int pointer = 0;
+        int[][] out = new int[9][9];
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                out[i][j] = Integer.parseInt(textBoxes[pointer].getText());
+                pointer++;
+            }
+        }
+        return out;
     }
 
 }

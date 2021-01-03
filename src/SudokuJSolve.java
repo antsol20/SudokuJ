@@ -1,37 +1,14 @@
 public class SudokuJSolve {
 
-    private final String boardTxt;
-    private final int[][] board = new int[9][9];
+    final private int[][] board;
 
-    public SudokuJSolve(String boardTxt) {
-        this.boardTxt = boardTxt;
+    public SudokuJSolve(int[][] board) {
+        this.board = board;
     }
 
-    public void solve() {
-        fillBoardFromTxT(boardTxt);
-        printBoard();
+    public int[][] solve() {
         solveBoard();
-
-    }
-
-    private void fillBoardFromTxT(String boardTxt) {
-        String[] rows = boardTxt.split("\n");
-        for (int i = 0; i < 9; i++) {
-            String[] vals = rows[i].split(",");
-            for (int j = 0; j < 9; j++) {
-                board[i][j] = Integer.parseInt(vals[j]);
-            }
-        }
-    }
-
-    private void printBoard() {
-        for (int i = 0; i < 9; i++) {
-            StringBuilder row = new StringBuilder();
-            for (int j = 0; j < 9; j++) {
-                row.append(" ").append(board[i][j]);
-            }
-            System.out.println(row);
-        }
+        return board;
     }
 
 
@@ -45,7 +22,6 @@ public class SudokuJSolve {
 
         if (nextEmpty.row == -1) {
             System.out.println("Solved");
-            printBoard();
             return true;
         }
 
@@ -106,5 +82,4 @@ public class SudokuJSolve {
         }
         return b;
     }
-
 }
